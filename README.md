@@ -10,7 +10,6 @@
 ## Important notice
 I've been super busy with work and other projects lately that I really don't have enough time to dedicate to this project. If you would like to maintain this project, you can drop me an [email](mailto:toystars2008@gmail.com). Thanks.
 
-
 ## Installation
 
 ``` bash
@@ -123,10 +122,11 @@ The component takes 3 compulsory props - `items`, `uniqueKey` and `onSelectedIte
 | canAddItems | No      | (Boolean) Defaults to "false". This allows a user to add items to the list of items provided. You need to handle adding the new items in the onAddItem function prop. Items may be added with the return key on the native keyboard. |
 | displayKey | No | (String) Defaults to "name". This string will be used to select the key to display the objects in the items array |
 | fixedHeight | No     | (Boolean) Defaults to false. Specifies if select dropdown take height of content or a fixed height with a scrollBar (There is an issue with this behavior when component is nested in a ScrollView in which scroll event will only be dispatched to parent ScrollView and select component won't be scrollable). See [this issue](https://github.com/toystars/react-native-multiple-select/issues/12) for more info. |
+| flatListProps | No | (Object) Properties for the FlatList. Pass any property that is required on the FlatList of the dropdown menu |
 | fontFamily | No     | (String) Custom font family to be used in component (affects all text except `searchInputPlaceholderText` described above) |
 | fontSize | No     | (Number) Font size for selected item name displayed as label for multiselect |
+| hideDropdown | No | (Boolean) Defaults false. Hide dropdown menu with a cancel, and use arrow-back |
 | hideSubmitButton | No | (Boolean) Defaults to false. Hide submit button from dropdown, and rather use arrow-button in search field |
-| autoFocusInput | No | (Boolean) Defaults to true. Auto focus on the search input when MultiSelect launches. |
 | hideTags | No | (Boolean) Defaults to false. Hide tokenized selected items, in case selected items are to be shown somewhere else in view (check below for more info) |
 | itemFontFamily | No   | (String) Font family for each non-selected item in multi-select drop-down |
 | itemFontSize | No   | (Number) Font size used for each item in the multi-select drop-down |
@@ -143,12 +143,19 @@ The component takes 3 compulsory props - `items`, `uniqueKey` and `onSelectedIte
 | selectedItemIconColor | No     | (String) Color for `selected` check icon for each selected item in multi-select drop-down |
 | selectedItemTextColor | No   | (String) Text color for each selected item in multi-select drop-down |
 | single | No     | (Boolean) Toggles select component between single option and multi option |
+| styleDropdownMenu | No | (Style) Style the view of the dropdown menu |
+| styleDropdownMenuSubsection | No | (Style) Style the inner view of the dropdown menu |
+| styleInputGroup | No | (Style) Style the Container of the Text Input Group |
+| styleItemsContainer | No | (Style) Style the Container of the items that are displayed in a list |
+| styleMainWrapper | No | (Style) Style the Main Container of the MultiSelector |
+| styleRowList | No | (Style) Style the Row that is displayed after you |
 | submitButtonColor | No   | (String) Background color for submit button  |
 | submitButtonText | No   | (String) Text displayed on submit button  |
 | tagBorderColor | No      | (String) Border color for each selected item  |
 | tagRemoveIconColor | No      | (String) Color to be used for the remove icon in selected items list |
 | tagTextColor | No  | (String) Text color for selected items list |
 | textColor | No     | (String) Color for selected item name displayed as label for multiselect  |
+| textInputProps | No | (Object) Properties for the Text Input. Pass any property that is required on the text input |
 | uniqueKey      | Yes      | (String) Unique identifier that is part of each item's properties. Used internally as means of identifying each item (Check sample below) |
 |selectedItems | No      | (Array, control prop) List of selected items keys . JavaScript Array of strings, that can be instantiated with the component |
 |noResultText | No      | (String) Text displayed when there is no item to display |
@@ -174,7 +181,7 @@ To use, add ref to MultiSelect component in parent component, then call method a
 />
 
 clearSelectedCategories = () => {
-   this._multiSelect.removeAllItems();
+   this._multiSelect._removeAllItems();
 };
 
 ```
